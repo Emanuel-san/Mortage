@@ -4,15 +4,18 @@ import app.mortage.Mortage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MortageCalculatorTest {
 
-    @Test
-    void monthlyPayment() {
-        Mortage p1 = new Mortage("Juha",1000,5,2);
-        Mortage p2 = new Mortage("Karvinen",4356,1.27,6);
-        Mortage p3 = new Mortage("Claes Månsson",1300.55,8.67,2);
+    @ParameterizedTest
+    @CsvSource({"Juha,1000,5,2,43.87" , "Karvinen,4356,1.27,6,62.87", "Claes Månsson,1300.55,8.67,2,59.22"})
+    public void monthlyPayment(String name, double totalLoan, double annualRate, int period, double expected) {
+        Mortage instance = new Mortage(name, totalLoan, annualRate, period);
+        double roundedValue = Math.round(MortageCalculator.monthlyPayment(instance) * 100.0) / 100.0;
+        assertEquals(roundedValue, expected);
     }
 }
