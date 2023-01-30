@@ -9,14 +9,14 @@ public class Mortage {
     private final double totalLoan;
     private final int loanPeriod;
 
-    public Mortage(String name, double totalLoan, double annualInterestRate, int loanPeriod) throws IllegalArgumentException{
+    public Mortage(String customerName, double totalLoan, double annualInterestRate, int loanPeriod) throws IllegalArgumentException{
         if(totalLoan <= 0){
             throw new IllegalArgumentException("Loan amount can not be 0 or less");
         }
         else if(loanPeriod <= 0){
             throw new IllegalArgumentException("Period of years can not be 0 or less");
         }
-        customerName = name;
+        this.customerName = customerName;
         this.annualInterestRate = annualInterestRate;
         this.totalLoan = totalLoan;
         this.loanPeriod = loanPeriod;
