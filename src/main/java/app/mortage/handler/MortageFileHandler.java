@@ -8,11 +8,13 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MortageFileHandler {
+    MortageDataManager manager;
+
+    public MortageFileHandler(MortageDataManager manager){
+        this.manager = manager;
+    }
 
     public void readFile(Path path) {
         boolean firstLineRead = false;
@@ -37,16 +39,8 @@ public class MortageFileHandler {
                     if(parts.length > 4) {
                         parts = parseArray(parts);
                     }
-                    //TODO MortageDataManger will create and handle a Mortage with data read from file.
-                    String customerName = parts[0];
-                    double totalLoan = Double.parseDouble(parts[1]);
-                    double annualInterestRate = Double.parseDouble(parts[2]);
-                    int loanPeriod = Integer.parseInt(parts[3]);
-
-                    System.out.println("Customer Name: " + customerName);
-                    System.out.println("Total Loan: " + totalLoan);
-                    System.out.println("Annual Interest Rate: " + annualInterestRate);
-                    System.out.println("Loan Period: " + loanPeriod);
+                    //TODO Exception handling
+                    manager.addMortage(parts);
                 } else {
                     firstLineRead = true;
                 }
@@ -57,6 +51,7 @@ public class MortageFileHandler {
             e.printStackTrace();
         }
     }
+
     private String[] parseArray(String[] array){
         StringBuilder builder = new StringBuilder();
         String[] parsedArray = new String[4];
