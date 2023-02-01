@@ -1,11 +1,14 @@
 package app.mortage;
 
-import app.mortage.handler.MortageDataManager;
+import app.mortage.handler.DataManager;
+
+import java.nio.file.Path;
 
 public class Application {
     public static void main(String[] args) {
-        MortageDataManager manager = new MortageDataManager();
-        manager.initDataFetch();
+        DataManager manager = new DataManager();
+        Path path = Path.of(System.getProperty("user.dir") + "/prospects.txt");
+        manager.initDataFetch(path);
         manager.printAllMortages();
     }
 }
