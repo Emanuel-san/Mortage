@@ -1,6 +1,7 @@
 package app.mortage.handler;
 
 import app.mortage.Mortage;
+import app.mortage.exceptions.IllegalArrayLengthException;
 
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -12,9 +13,19 @@ public class DataManager {
     public DataManager() {
         mortages = new HashMap<>();
     }
-    public void addMortage(String[] mortageData){
-        Mortage newEntry = new Mortage(mortageData[0], Double.parseDouble(mortageData[1]), Double.parseDouble(mortageData[2]), Integer.parseInt(mortageData[3]));
-        mortages.put(newEntry.getId(), newEntry);
+    public void addMortage(String[] mortageData) throws NumberFormatException, IllegalArrayLengthException {
+        try {
+            if(mortageData.length == 4) {
+                Mortage newEntry = new Mortage(mortageData[0], Double.parseDouble(mortageData[1]), Double.parseDouble(mortageData[2]), Integer.parseInt(mortageData[3]));
+                mortages.put(newEntry.getId(), newEntry);
+            }
+            else{
+                throw new IllegalArrayLengthException("Array length passed to instantiate a Mortage must always be 4, array length passed to method was " + mortageData.length);
+            }
+        }
+        catch (NumberFormatException e){
+            throw e;
+        }
     }
     public void initDataFetch(Path path){
         MortageFileHandler handler = new MortageFileHandler(this);

@@ -1,5 +1,6 @@
 package app.mortage.handler;
 
+import app.mortage.exceptions.IllegalArrayLengthException;
 import app.mortage.exceptions.ParsingArrayDataException;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -45,10 +46,13 @@ public class MortageFileHandler {
                         }
                         catch (ParsingArrayDataException e){
                             System.err.println(e.getMessage());
-                            e.printStackTrace();
                         }
                     }
-                    manager.addMortage(parts);
+                    try {
+                        manager.addMortage(parts);
+                    } catch (IllegalArrayLengthException | NumberFormatException e) {
+                        System.err.println(e.getMessage());
+                    }
                 }
                 else {
                     firstLineRead = true;
@@ -59,7 +63,7 @@ public class MortageFileHandler {
             throw e;
         }
         catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -78,10 +82,11 @@ public class MortageFileHandler {
                 break;
             }
         }
+
         parsedArray[0] = builder.toString().trim();
         for(int i = currentIndex; i < array.length; i++){
             if(parsedArrayIndex > 3){
-                throw new ParsingArrayDataException("Failed parsing array with array data: " + Arrays.toString(array));
+                throw new ParsingArrayDataException("Failed parsing with given array data: " + Arrays.toString(array));
             }
             parsedArray[parsedArrayIndex++] = array[i];
         }

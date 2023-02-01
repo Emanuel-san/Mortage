@@ -24,8 +24,7 @@ class MortageFileHandlerTest {
         // If NoSuchFileException is thrown then this test will fail.
         assertEquals(2, testManager.mapSize());
 
-        Path testPath = Path.of(System.getProperty("user.dir") + "/src/test/java/app/mortage/handler/test_prospectssss.txt");
-        assertThrows(NoSuchFileException.class, () -> testHandler.readFile(testPath));
-
+        Path faultyTestPath = Path.of(System.getProperty("user.dir") + "/src/test/java/app/mortage/handler/test_prospectssss.txt");
+        assertThrows(NoSuchFileException.class, () -> testHandler.readFile(faultyTestPath));
     }
 }
