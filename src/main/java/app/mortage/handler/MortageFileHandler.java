@@ -31,12 +31,11 @@ public class MortageFileHandler {
                  * \\s matches any white space character
                  * \\, matches any comma
                  * \\. matches any dot
-                 * \\- matches any line
                  * The ^ inside the square brackets means "not"
                  *
                  * Anything that doesn't meet the above conditions is removed.
                  **/
-                line = line.replaceAll("[^\\p{L}\\p{N}\\s\\,\\.\\-]", "");
+                line = line.replaceAll("[^\\p{L}\\p{N}\\s\\,\\.]", "");
                 String[] parts = line.split(",");
 
                 if (firstLineRead && parts.length >= 4) {
