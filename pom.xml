@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>mortage</artifactId>
+    <artifactId>mortgage</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
@@ -40,7 +40,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>app.mortage.Application</mainClass>
+                            <mainClass>app.mortgage.Application</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

@@ -1,6 +1,6 @@
-package app.mortage;
+package app.mortgage;
 
-import app.mortage.handler.DataManager;
+import app.mortgage.handler.DataManager;
 
 import java.nio.file.Path;
 

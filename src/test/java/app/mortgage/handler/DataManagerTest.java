@@ -1,6 +1,6 @@
-package app.mortage.handler;
+package app.mortgage.handler;
 
-import app.mortage.exceptions.IllegalArrayLengthException;
+import app.mortgage.exceptions.IllegalArrayLengthException;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -16,7 +16,7 @@ class DataManagerTest {
 
         assertEquals(0, testManager.mapSize());
         try {
-            testManager.addMortage(testData);
+            testManager.addMortgage(testData);
         } catch (IllegalArrayLengthException | NumberFormatException e) {
             throw new RuntimeException(e);
         }
@@ -40,8 +40,8 @@ class DataManagerTest {
         String[] faulty3 = {"5", "Juha", "1000.2", "1.24", "2", "2"};
 
         DataManager testManager = new DataManager();
-        assertThrows(NumberFormatException.class, () -> testManager.addMortage(faulty1));
-        assertThrows(IllegalArrayLengthException.class, () -> testManager.addMortage(faulty2));
-        assertThrows(IllegalArrayLengthException.class, () -> testManager.addMortage(faulty3));
+        assertThrows(NumberFormatException.class, () -> testManager.addMortgage(faulty1));
+        assertThrows(IllegalArrayLengthException.class, () -> testManager.addMortgage(faulty2));
+        assertThrows(IllegalArrayLengthException.class, () -> testManager.addMortgage(faulty3));
     }
 }
