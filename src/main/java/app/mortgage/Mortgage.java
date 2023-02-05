@@ -26,7 +26,7 @@ public class Mortgage {
     public void printCustomerMonthlyPayment(){
         System.out.printf(
                 "****************************************************************************************************\n\n" +
-                "Prospect %d: %s wants to borrow %.2f€ for a period of %d years and pay %.2f€ each month.\n\n" +
+                "Prospect %d: %s wants to borrow %.2f for a period of %d years and pay %.2f each month.\n\n" +
                 "****************************************************************************************************\n", id, customerName, totalLoan, loanPeriod, MortgageCalculator.monthlyPayment(this));
     }
 
